@@ -1,0 +1,40 @@
+version: "3"
+
+volumes:
+  postgres-data:
+  kestra-data:
+
+services:
+  kestra:
+    build: .
+    pull_policy: build
+    command: server standalone
+    ports:
+      - "8080:8080"
+    environment:
+      KESTRA_CONFIGURATION: |
+        kestra:
+          server:
+            basic-auth:
+              enabled: false
+          storage:
+            type: local
+            local:
+              base-path: /app/storage
+          queue:
+            type: memory
+          repository:
+            type: memory
+      
+      # PASTE YOUR API KEY HERE
+      GITHUB_TOKEN: "REPLACE_WITH_YOUR_GITHUB_TOKEN"
+      GOOGLE_API_KEY: "REPLACE_WITH_YOUR_GEMINI_API_KEY"
+      
+      PATH: "/usr/local/bin:/usr/bin:/bin:/opt/java/openjdk/bin"
+
+    volumes:
+      - kestra-data:/app/storage
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./scripts:/app/scripts
+      # THE UPDATE: Map the whole project so the Agent can go anywhere
+      - ./:/app/project

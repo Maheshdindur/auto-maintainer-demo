@@ -39,7 +39,7 @@ if not GITHUB_TOKEN or not GOOGLE_API_KEY:
 
 # --- CHANGED: Use Stable Model for better Rate Limits ---
 genai.configure(api_key=GOOGLE_API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash') 
+model = genai.GenerativeModel('gemini-2.5-flash') 
 
 # --- 2. HELPER FUNCTIONS ---
 def get_pr_diff(diff_url):
