@@ -27,7 +27,8 @@ services:
             type: memory
       
       # PASTE YOUR API KEY HERE
-      GOOGLE_API_KEY: "AIzaSyAq3iL73WXAPRSj3P1AunYwRmj8LGS5dJE" 
+      GITHUB_TOKEN: "REPLACE_WITH_YOUR_GITHUB_TOKEN"
+      GOOGLE_API_KEY: "REPLACE_WITH_YOUR_GEMINI_API_KEY"
       
       PATH: "/usr/local/bin:/usr/bin:/bin:/opt/java/openjdk/bin"
 
