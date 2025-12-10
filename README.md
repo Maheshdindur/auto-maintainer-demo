@@ -68,6 +68,6 @@ Unlike generic coding bots, OS-Maintainer is designed for **Safety and Trust**:
 2.  Make changes and Push: `git push origin feature/test-bot`
 3.  Open a Pull Request on GitHub.
 4.  **Watch the Magic:** The OS-Maintainer will automatically comment on your PR within seconds!
-
+5. This is a wonderfull open source project which all open contributors love.
 ---
 *Built for the 2025 AI Hackathon.*
