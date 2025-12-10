@@ -14,20 +14,12 @@ triggers:
 tasks:
   - id: run_reviewer
     type: io.kestra.core.tasks.scripts.Bash
-    
-    # Environment variables passed to the Python script
+    # SAFETY FIX: Pass the massive JSON as an Environment Variable
+    # This prevents shell quoting issues.
     env:
-      # Pass the raw GitHub payload into the script
       GITHUB_PAYLOAD: "{{ trigger.body | toJson }}"
-      
-      # Force Python to print logs immediately (for better debugging)
-      PYTHONUNBUFFERED: "1" 
-      
-      # CRITICAL: Pass the Kestra execution URL (for Status Check / Merge Block)
-      KESTRA_EXECUTION_URL: "{{ execution.webhookUrl }}" 
-      
     commands:
-      # Start the Python script using the unbuffered flag for immediate output
       - |
-        echo "--- STARTING AI REVIEWER SCRIPT ---"
-        python3 -u /app/scripts/reviewer.py
+        echo "--- STARTING REVIEWER SCRIPT ---"
+        # The script reads the ENV variable instead of CLI args
+        python3 /app/scripts/reviewer.py
