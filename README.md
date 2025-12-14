@@ -28,7 +28,7 @@ Unlike generic coding bots, OS-Maintainer is designed for **Safety and Trust**:
 ## 🚀 Key Features
 
 * **⚡ Instant Event Detection:** Wakes up immediately when a PR is opened.
-* **🧠 Semantic Analysis:** Understands if a PR title follows conventions (e.g., `feat:`, `fix:`).
+* **🧠 Semantic Analysis:** Understands if a PR(code) follows conventions.
 * **💬 Automated Feedback:** Posts friendly, constructive comments to contributors.
 * **🔒 Secure Execution:** Runs entirely within a Docker container; secrets are never exposed to the AI model.
 
