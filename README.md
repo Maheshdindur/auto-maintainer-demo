@@ -8,7 +8,7 @@
 ![AI Model](https://img.shields.io/badge/AI-Gemini%202.5%20Flash-orange)
 
 ## 🚨 The Problem
-Open Source maintainers are burning out. Thousands of Pull Requests (PRs) go unreviewed because maintainers lack the time to manually check every single contribution. Bad PRs clutter the repo, while good ideas die in the backlog.
+Open Source maintainers face overwhelming volumes of Pull Requests (PRs), leading to burnout and missed security vulnerabilities. Manual code review is slow, inconsistent, and often fails to catch subtle policy violations (like misformatted commit messages) or critical security flaws (like hardcoded secrets)
 
 ## 🤖 The Solution
 **OS-Maintainer** is an autonomous AI agent that acts as a **First-Line Gatekeeper**. It listens to repository events 24/7, analyzes incoming code, and enforces contribution rules automatically.
@@ -20,15 +20,14 @@ Unlike generic coding bots, OS-Maintainer is designed for **Safety and Trust**:
 
 ## ⚙️ Architecture
 
-1.  **The Ears (Ngrok + Webhooks):** Listens for real-time GitHub events (Open PR, Comment, Push).
-2.  **The Nervous System (Kestra):** Orchestrates the workflow, managing inputs, triggers, and execution flow.
-3.  **The Brain (Google Gemini 2.5):** Analyzes the context (PR Title, Diff, Rules) to make intelligent decisions.
-4.  **The Voice (GitHub API):** Posts semantic comments directly to the PR (Approvals or Change Requests).
-
+1.  **The Ears (Ngrok + Webhooks):**GitHub sends real-time events (PR Open, Push) to the public Ngrok endpoint.
+2.  **The Nervous System (Kestra):** Kestra's Webhook Trigger immediately catches the event and launches the AI analysis flow, providing full auditability of the entire process.Orchestrates the workflow, managing inputs, triggers, and execution flow.
+3.  **The Brain (Google Gemini 2.5):** The Kestra flow executes a containerized Python script which calls the Gemini API to analyze the PR's Diff, title, and existing contribution rules.
+4.  **The Voice (GitHub API):** Based on the AI's decisive verdict, the system posts semantic comments and sets the appropriate GitHub Status Check (e.g., green check or red X) to enforce the policy.
 ## 🚀 Key Features
 
 * **⚡ Instant Event Detection:** Wakes up immediately when a PR is opened.
-* **🧠 Semantic Analysis:** Understands if a PR title follows conventions (e.g., `feat:`, `fix:`).
+* **🧠 Semantic Analysis:** Verifies code and commit messages against project conventions (feat:, fix:, etc.).
 * **💬 Automated Feedback:** Posts friendly, constructive comments to contributors.
 * **🔒 Secure Execution:** Runs entirely within a Docker container; secrets are never exposed to the AI model.
 
