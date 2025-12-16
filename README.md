@@ -18,12 +18,6 @@ Unlike generic coding bots, OS-Maintainer is designed for **Safety and Trust**:
 * It acts as a "Senior Reviewer," requesting changes when rules are violated.
 * It runs locally in a secure Docker sandbox.
 
-## ⚙️ Architecture
-
-1.  **The Ears (Ngrok + Webhooks):**GitHub sends real-time events (PR Open, Push) to the public Ngrok endpoint.
-2.  **The Nervous System (Kestra):** Kestra's Webhook Trigger immediately catches the event and launches the AI analysis flow, providing full auditability of the entire process.Orchestrates the workflow, managing inputs, triggers, and execution flow.
-3.  **The Brain (Google Gemini 2.5):** The Kestra flow executes a containerized Python script which calls the Gemini API to analyze the PR's Diff, title, and existing contribution rules.
-4.  **The Voice (GitHub API):** Based on the AI's decisive verdict, the system posts semantic comments and sets the appropriate GitHub Status Check (e.g., green check or red X) to enforce the policy.
 ## 🚀 Key Features
 
 * **⚡ Instant Event Detection:** Wakes up immediately when a PR is opened.
@@ -59,7 +53,6 @@ Unlike generic coding bots, OS-Maintainer is designed for **Safety and Trust**:
     ```bash
     ngrok http 8080
     ```
-    *Add the generated URL to your GitHub Repository Webhooks.*
 
 ## 🧪 Usage
 
